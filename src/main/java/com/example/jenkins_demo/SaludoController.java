@@ -10,6 +10,6 @@ public class SaludoController {
 
     @GetMapping("/api/saludo")
     public Map<String, String> saludo() {
-        return Map.of("mensaje", "Hola desde Jenkins jeje");
+        return Map.of("mensaje", "Hola desde Jenkins");
     }
 }
