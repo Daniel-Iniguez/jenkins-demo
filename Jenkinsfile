@@ -31,7 +31,6 @@ pipeline {
                     docker run -d \
                       --name springboot-demo \
                       --restart unless-stopped \
-                      --network jenkins-network \
                       -p 8082:8082 \
                       jenkins-demo:latest
                 '''
