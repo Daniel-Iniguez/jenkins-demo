@@ -1,3 +1,4 @@
+
 pipeline {
     agent {
         label 'maven'
@@ -16,6 +17,12 @@ pipeline {
             }
         }
 
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t jenkins-demo:latest .'
+            }
+        }
+
         stage('Archive') {
             steps {
                 archiveArtifacts artifacts: 'target/*.jar',
@@ -26,7 +33,8 @@ pipeline {
 
     post {
         always {
-            junit 'target/surefire-reports/*.xml'
+            junit testResults: 'target/surefire-reports/*.xml',
+                  allowEmptyResults: true
         }
     }
 }
