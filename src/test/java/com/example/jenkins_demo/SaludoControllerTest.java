@@ -15,6 +15,6 @@ class SaludoControllerTest {
         String resultado = controller.saludo().get("mensaje");
 
         // Assert: comprobar el resultado
-        assertEquals("Hola desde Jenkins jeje", resultado);
+        assertEquals("Hola desde Jenkins", resultado);
     }
 }
