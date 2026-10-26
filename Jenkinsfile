@@ -23,6 +23,21 @@ pipeline {
             }
         }
 
+        stage('Deploy') {
+            steps {
+                sh '''
+                    docker rm -f springboot-demo 2>/dev/null || true
+
+                    docker run -d \
+                      --name springboot-demo \
+                      --restart unless-stopped \
+                      --network jenkins-network \
+                      -p 8082:8082 \
+                      jenkins-demo:latest
+                '''
+            }
+        }
+
         stage('Archive') {
             steps {
                 archiveArtifacts artifacts: 'target/*.jar',
